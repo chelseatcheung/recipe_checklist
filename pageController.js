@@ -3,34 +3,35 @@ angular.module('recipe_ingredients', [])
 .controller('LinksController', function ($scope, Links) {
 
   $scope.savedRecipes = [];
+  
   $scope.getLinks = function(data) {
-  $scope.recipes = [];
-  $scope.links = [];
-  $scope.ingredients = [];
-  $scope.imgs = [];
+    $scope.recipes = [];
+    $scope.links = [];
+    $scope.ingredients = [];
+    $scope.imgs = [];
     Links.getRecipes(data)
       .success(function(data) {
         for(var i = 0; i < data.matches.length; i++) {
           if($scope.recipes.indexOf(data.matches[i].recipeName) === -1) {
-          $scope.recipes.push(data.matches[i].recipeName);
-          }
-        }
-        for(var i =0; i < data.matches.length; i++) {
-          if($scope.links.indexOf(data.matches[i].id) ===-1) {
+            $scope.recipes.push(data.matches[i].recipeName);
+          } 
+          if($scope.links.indexOf(data.matches[i].id)===-1) {
             $scope.links.push(data.matches[i].id);
           }
-        }
-        for(var i=0; i < data.matches.length; i++) {
           if($scope.ingredients.indexOf(data.matches[i].ingredients)=== -1) {
             $scope.ingredients.push(data.matches[i].ingredients);
           }
-        }  
-
-        for(var i=0; i < data.matches.length; i++) {
           if($scope.ingredients.indexOf(data.matches[i].imageUrlsBySize) === -1) {
             $scope.imgs.push(data.matches[i].imageUrlsBySize);
+          }      
+        }
+
+        for(var i=0; i < $scope.recipes.length; i++) {
+          if($scope.recipes[i].length > 26) {
+            $scope.recipes[i] = $scope.recipes[i].substr(0, 26)+ '...';
           }
-        }      
+        }
+    
         $scope.repeatData = $scope.recipes.map(function(value, index) {
           return {
             recipes: value,
@@ -48,7 +49,6 @@ angular.module('recipe_ingredients', [])
       console.log('data is: ' + data.ingredients)
       for(var i =0; i < data.ingredients.length; i++) {
           $('.ingredient-list').append('<br>' + '<center>' + '<input type="checkbox" name="ingredient">' + data.ingredients[i] + '</center>' + '</br>');
-        // }
       }
     }
 
@@ -57,7 +57,6 @@ angular.module('recipe_ingredients', [])
       var imgData = data['img'][90];
       var imgUrl = data['links'];
       $scope.savedRecipes.push({image:imgData, url:imgUrl});
-      // $('.saved-recipes').append('  <img class="pic" src=' + imgData + '>  ');
     }
   }
 
