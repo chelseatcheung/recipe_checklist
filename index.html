@@ -14,9 +14,9 @@
     </form>
     <div class='recipe-list' style='overflow:scroll; height:400px'>
     <div ng-repeat='data in repeatData'>
-      <br><a href='http://yummly.com/recipe/{{data.links}}' target='_blank'>{{data.recipes}}</a>
-      <button id='save' style='font-size:13px' ng-click='saveRecipes(data)'>Save</button>
-      <button id='cook' style='font-size:13px' ng-click='getIngredients(data)'>Cook!</button></br>
+      <br><a class='recipe-link' href='http://yummly.com/recipe/{{data.links}}' target='_blank'>{{data.recipes}}</a>
+      <button class='save' style='font-size:13px' ng-click='saveRecipes(data)'>Save</button>
+      <button class='cook' style='font-size:13px' ng-click='getIngredients(data)'>Cook!</button></br>
     </div>
   </div>
   </div>

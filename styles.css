@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+.recipe-link:hover {
+  color:#a6a5a5;
+}
+
 .ingredients-recipes-box {
   border:none;
   border-radius:25px;
@@ -74,7 +78,7 @@ a {
   float:left;
 }
 
-#cook {
+.cook {
   background-color:#ec957a;
   font-family:avenir;
   border:none;
@@ -82,7 +86,11 @@ a {
   color:white;
 }
 
-#save {
+.cook:hover {
+  cursor:pointer;
+}
+
+.save {
   margin-left: 5px;
   background-color:#ec957a;
   font-family:avenir;
@@ -90,6 +98,11 @@ a {
   float:right;
   color:white;
 }
+
+.save:hover {
+  cursor:pointer;
+}
+
 
 #searchForm {
   margin: 0 auto;
