@@ -27,8 +27,8 @@ angular.module('recipe_ingredients', [])
         }
 
         for(var i=0; i < $scope.recipes.length; i++) {
-          if($scope.recipes[i].length > 26) {
-            $scope.recipes[i] = $scope.recipes[i].substr(0, 26)+ '...';
+          if($scope.recipes[i].length > 24) {
+            $scope.recipes[i] = $scope.recipes[i].substr(0, 24)+ '...';
           }
         }
     
@@ -53,10 +53,29 @@ angular.module('recipe_ingredients', [])
     }
 
     $scope.saveRecipes = function(data) {
-      console.log('data is :' + data['img'][90]);
+      console.log('data is :' + JSON.stringify(data));
+      var recipeName = data['recipes'].toLowerCase();
       var imgData = data['img'][90];
       var imgUrl = data['links'];
-      $scope.savedRecipes.push({image:imgData, url:imgUrl});
+      var split = recipeName.split(' ');
+      for(var i=0; i < split.length; i++) {
+        split[i] = split[i][0].toUpperCase() + split[i].substr(1);
+      }
+      recipeName = split.join(' ');
+      if(recipeName.length > 16) {
+        recipeName = recipeName.substr(0, 16)
+      }
+      $scope.savedRecipes.push({image:imgData, url:imgUrl, name: recipeName});
+    }
+
+    $scope.deleteRecipe = function(data) {
+      console.log('data is ', data)
+      for(var i=0; i< $scope.savedRecipes.length; i++) {
+        if($scope.savedRecipes[i].name === data.name) {
+          console.log('in if statement')
+          $scope.savedRecipes.splice(i,1)
+        }
+      }
     }
   }
 
