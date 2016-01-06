@@ -1,40 +1,64 @@
 <!DOCTYPE html>
 <html ng-app="yummly">
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href='styles.css' rel='stylesheet'>
   </head>
 
 <body>
+  <div class='row row-spacer'></div>
+  <div class='container'>
   <div class='ingredients-recipes-box' ng-controller='LinksController'>
-  <!-- <div id='recipes' ng-controller='LinksController'> -->
-    <div id='recipes'>
-    <form id='searchForm' ng-submit='getLinks(recipeGet)'>
-      <input class='recipe-search' type='text' ng-model='recipeGet' style='font-size:14px' placeholder='Search for a recipe!'>
-      <input class='recipe-submit' type='submit' id='submit' value='Submit'>
-    </form>
-    <div class='recipe-list' style='overflow:scroll; height:400px'>
-    <div ng-repeat='data in repeatData'>
-      <br><a class='recipe-link' href='http://yummly.com/recipe/{{data.links}}' target='_blank'>{{data.recipes}}</a>
-      <button class='save' style='font-size:13px' ng-click='saveRecipes(data)'>Save</button>
-      <button class='cook' style='font-size:13px' ng-click='getIngredients(data)'>Cook!</button></br>
-    </div>
-  </div>
-  </div>
+    <div class='row row-holder'>
+      <div class='col-md-1'></div>
+      <div class='col-md-5'>
+      <div class='recipes'>
+        <div>
+        <form id='searchForm' ng-submit='getLinks(recipeGet)'>
+          <input class='recipe-search' type='text' ng-model='recipeGet' style='font-size:14px' placeholder='Search for a recipe!'>
+          <input class='recipe-submit' type='submit' id='submit' value='Submit'>
+        </form>
+        </div>
+        <div class='recipe-list' style='overflow-y:scroll; height:400px'>
+          <div ng-repeat='data in repeatData'>
+            <br><a class='recipe-link' href='http://yummly.com/recipe/{{data.links}}' target='_blank'>{{data.recipes}}</a>
+            <button class='save' style='font-size:13px' ng-click='saveRecipes(data)'>Save</button>
+            <button class='cook' style='font-size:13px' ng-click='getIngredients(data)'>Cook!</button></br>
+          </div>
+        </div>
+      </div>
+      </div>  
 
-  <div id='ingredients'>
-    <div class='ingredient-list' style='overflow:scroll; height:400px'>
+      <div class='col-md-5'>
+      <div class='ingredients'>
+        <div class='ingredient-list' style='overflow-y:scroll; height:350px'>
+        </div>
+      </div>
+      </div>
+      <div class='col-md-1'></div>
     </div>
-  </div>
 
-  <div id='recipe-book'>
-    <div class='saved-recipes'>
-    <div ng-repeat='data in savedRecipes'>
-      <span class="recipe-left">
-        <a href='http://yummly.com/recipe/{{data.url}}' target='_blank'><img src='{{data.image}}'></a>
-      </span>
+    <div class='row'>
+      <div class='row row-spacer'></div>
+      <div class='col-md-1'></div>
+      <div class='col-md-10'>
+      <div id='recipe-book'>
+        <div class='saved-recipes'>
+          <div ng-repeat='data in savedRecipes'>
+            <span id="recipe-left">
+              <a href='http://yummly.com/recipe/{{data.url}}' target='_blank'><img src='{{data.image}}'></a>
+              <p class='text-hover'>{{data.name}}</p>
+              <img class='ex-button' ng-click='deleteRecipe(data)' src='ex.png'>
+            </span>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class='col-md-1'></div>
     </div>
   </div>
-</div>
+  </div>
+  <div class='row row-spacer'></div>
 
   <script src="./node_modules/underscore/underscore-min.js"></script>
   <script src="./node_modules/jquery/dist/jquery.min.js"></script>
