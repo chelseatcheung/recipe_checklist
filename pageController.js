@@ -11,6 +11,7 @@ angular.module('recipe_ingredients', [])
     $scope.imgs = [];
     Links.getRecipes(data)
       .success(function(data) {
+        // console.log('getting the data to the controller', data)
         for(var i = 0; i < data.matches.length; i++) {
           if($scope.recipes.indexOf(data.matches[i].recipeName) === -1) {
             $scope.recipes.push(data.matches[i].recipeName);
@@ -46,14 +47,12 @@ angular.module('recipe_ingredients', [])
 
     $scope.getIngredients = function(data) {
       $('.ingredient-list').html('');
-      console.log('data is: ' + data.ingredients)
       for(var i =0; i < data.ingredients.length; i++) {
           $('.ingredient-list').append('<br>' + '<center>' + '<input type="checkbox" name="ingredient">' + data.ingredients[i] + '</center>' + '</br>');
       }
     }
 
     $scope.saveRecipes = function(data) {
-      console.log('data is :' + JSON.stringify(data));
       var recipeName = data['recipes'].toLowerCase();
       var imgData = data['img'][90];
       var imgUrl = data['links'];
@@ -69,10 +68,8 @@ angular.module('recipe_ingredients', [])
     }
 
     $scope.deleteRecipe = function(data) {
-      console.log('data is ', data)
       for(var i=0; i< $scope.savedRecipes.length; i++) {
         if($scope.savedRecipes[i].name === data.name) {
-          console.log('in if statement')
           $scope.savedRecipes.splice(i,1)
         }
       }
