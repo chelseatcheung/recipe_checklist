@@ -2,7 +2,7 @@
 ###Recipe Checklist
 MVP web application utilizing AngularJS, Node Express, and Yummly API to allow users to search/save recipes and create a checklist of needed ingredients
 
-Deployed site: https://limitless-cliffs-5086.herokuapp.com/
+Deployed site: https://recipe-checklist.herokuapp.com/
 
 ###Getting started
 * Clone the repo 
